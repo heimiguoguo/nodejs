@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="vueCon">
+            hello,<div>{{name}}</div>
+        <table>
+            <tr v-for="(item,index) in members">
+                <td>{{index+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.age}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        var myVue =  new Vue({
+            el:"#vueCon",
+            data:{
+                name:"tom",
+                members:[
+                    {
+                        "name":"tom",
+                        "age":23
+                    },
+                    {
+                        "name":"simon",
+                        "age":23
+                    },
+                    {
+                        "name":"lawrence",
+                        "age":23
+                    },
+                    {
+                        "name":"joseph",
+                        "age":23
+                    }
+                ]
+            },
+            methods:{
+
+            }
+        })
+    </script>
+</body>
+</html>
