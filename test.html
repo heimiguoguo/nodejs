@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <!-- import CSS -->
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
-<body>
 
-<input type="radio" name="opt">A
-<input type="radio" name="opt" checked>B
-<input type="radio" name="opt">C
-<input type="radio" name="opt">D
-<div id="app">
-    <el-radio-group v-model="radio5" size="small">
-        <el-radio-button label="上海"></el-radio-button>
-        <el-radio-button label="北京" disabled ></el-radio-button>
-        <el-radio-button label="广州"></el-radio-button>
-        <el-radio-button label="深圳"></el-radio-button>
-    </el-radio-group>
-</div>
+<body>
+    <div id="app">
+        <div class="block">
+            <span class="demonstration">默认不区分颜色</span>
+            <el-rate v-model="value1"></el-rate>
+        </div>
+        <div class="block">
+            <span class="demonstration">区分颜色</span>
+            <el-rate v-model="value2" :colors="['#99A9BF', '#F7BA2A', '#FF9900']">
+            </el-rate>
+        </div>
+    </div>
 </body>
 <!-- import Vue before Element -->
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -27,9 +27,13 @@
 <script>
     new Vue({
         el: '#app',
-        data: function() {
-            return { radio5: "上海" }
+        data: function () {
+            return {
+                value1: 5,
+                value2: 4
+            }
         }
     })
 </script>
+
 </html>
