@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>back_to-top</title>
+    <script src="libs/jquery-3.3.1.js"></script>
+    <style>
+        .item{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin-bottom: 10px;
+        }
+
+        .item1{
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            margin-bottom: 10px;
+        }
+
+        .back_to_top{
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="item"></div>
+<div class="item"></div>
+<div class="item"></div>
+<div class="item"></div>
+<div class="item"></div>
+<div class="item"></div>
+<div class="item"></div>
+<div class="item"></div>
+<div class="item"></div>
+<div class="item"></div>
+<div class="item"></div>
+<div class="item"></div>
+<div class="item"></div>
+<div class="item"></div>
+<h3>当你看到我的时候回到顶部按钮就应该出现了</h3>
+<div class="item1"></div>
+<div class="item1"></div>
+<div class="item1"></div>
+<div class="item1"></div>
+<div class="item1"></div>
+<div class="item1"></div>
+<div class="item1"></div>
+<div class="item1"></div>
+<div class="item1"></div>
+<div class="item1"></div>
+<div class="item1"></div>
+<div class="item1"></div>
+<button class="back_to_top">回到顶部</button>
+<script>
+    $(function(){
+//        var h3_height = $("h3").offset().top;
+//        $(window).scroll(function(){
+//            var this_scrollTop = $(this).scrollTop();
+//            if(this_scrollTop>h3_height ){
+//                $(".back_to_top").show();
+//            }
+//        });
+
+        var backButton=$('.back_to_top');
+        function backToTop() {
+            $('html,body').animate({
+                scrollTop: 0
+            }, 800);
+        }
+        backButton.on('click', backToTop);
+
+        $(window).on('scroll', function () {/*当滚动条的垂直位置大于浏览器所能看到的页面的那部分的高度时，回到顶部按钮就显示 */
+            if ($(window).scrollTop() > $(window).height())
+                backButton.fadeIn();
+            else
+                backButton.fadeOut();
+        });
+        $(window).trigger('scroll');/*触发滚动事件，避免刷新的时候显示回到顶部按钮*/
+    });
+
+</script>
+</body>
+</html>

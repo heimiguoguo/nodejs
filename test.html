@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="block">
+            <span class="demonstration">默认不区分颜色</span>
+            <el-rate v-model="value1"></el-rate>
+        </div>
+        <div class="block">
+            <span class="demonstration">区分颜色</span>
+            <el-rate v-model="value2" :colors="['#99A9BF', '#F7BA2A', '#FF9900']">
+            </el-rate>
+        </div>
+    </div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                value1: 5,
+                value2: 4
+            }
+        }
+    })
+</script>
+
+</html>
