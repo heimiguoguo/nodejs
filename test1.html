@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .col {
+            height: 100px;
+            margin: 10px;
+        }
+
+        .row .col:first-child {
+            width: 100px;
+
+        }
+
+        .row .col:last-child {
+            flex: 1;
+        }
+
+        .item {
+            height: 100%;
+        }
+
+        .row .col:first-child .item {
+            background-color: red;
+        }
+
+        .row .col:last-child .item {
+            background-color: green;
+        }
+    </style>
+
+    <script>
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            let id = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(id))
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col" ondragover="allowDrop(event)" ondrop="drop(event)">
+                <div class="item" draggable="true" ondragstart="drag(event)" id="item1"></div>
+            </div>
+            <div class="col" ondragover="allowDrop(event)" ondrop="drop(event)">
+                <div class="item" draggable="true" ondragstart="drag(event)" id="item2"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="item"></div>
+            </div>
+            <div class="col">
+                <div class="item"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="item"></div>
+            </div>
+            <div class="col">
+                <div class="item"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

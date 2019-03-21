@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        div {
+            width: 400px;
+            height: 200px;
+            border: 2px solid #ccc;
+            margin: 10px;
+        }
+    </style>
+    <script>
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            let id = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(id))
+        }
+    </script>
 </head>
+
 <body>
-bug已经改完了，现在回到dev分支继续开发新功能
-新功能开发了一半，临时出了一个紧急bug，我先去解决一下，回来继续开发新功能
-新功能开发完毕，回到master分支进行合并
+    <div id="container" ondragover="allowDrop(event)" ondrop="drop(event)">
+        <img src="./范冰冰.jpg" alt="" ondragstart="drag(event)" id="img">
+    </div>
+    <div id="container2" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
 </body>
+
 </html>
