@@ -1,3 +1,3 @@
 *.D5_Store
 .idea
-node_module/vue/src/.D5_Store
+node_modules
