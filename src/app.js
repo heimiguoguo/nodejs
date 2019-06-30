@@ -4,6 +4,7 @@ const bodyParser = require('koa-bodyparser');
 const router = require('koa-router')();
 // 导入controller middleware:
 const controller = require('./controller');
+let staticFiles = require('./static-files');
 const app = new Koa();
 
 // log request URL:
@@ -15,6 +16,8 @@ app.use(async (ctx, next) => {
 app.use(bodyParser());
 // 使用middleware:
 app.use(controller());
+app.use(staticFiles('/static/', __dirname + '/static'));
+
 
 let port = 8080
 app.listen(port);
