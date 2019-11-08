@@ -1,52 +1,40 @@
-const Koa = require('koa');
-const bodyParser = require('koa-bodyparser');
-// 注意require('koa-router')返回的是函数:
-const router = require('koa-router')();
+const Koa = require('koa')
 
-const app = new Koa();
+const bodyParser = require('koa-bodyparser')
 
-// log request URL:
-app.use(async (ctx, next) => {
-    console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
-    await next();
+const controller = require('./controller')
+
+const templating = require('./templating')
+
+const isProduction = process.env.NODE_ENV === 'production'
+
+const app = new Koa()
+
+app.use(async(ctx, next) => {
+    console.log(`Process ${ctx.request.method} ${ctx.request.url}`)
+    await next()
+})
+
+app.use(async(ctx, next) => {
+    const start = new Date().getTime(); // 当前时间
+    await next(); // 调用下一个middleware
+    const ms = new Date().getTime() - start; // 耗费时间
+    console.log(`Time: ${ms}ms\n`); // 打印耗费时间
 });
+console.log(isProduction)
+if (!isProduction) {
+    let staticFiles = require('./static-files');
+    app.use(staticFiles('/static/', __dirname + '/static'));
+}
 
-// add url-route:
-router.get('/hello/:name', async (ctx, next) => {
-    var name = ctx.params.name;
-    ctx.response.body = `<h1>Hello, ${name}!</h1>`;
-});
+app.use(templating('views', {
+    noCache: !isProduction,
+    watch: !isProduction
+}))
 
-// router.get('/', async (ctx, next) => {
-//     ctx.response.body = '<h1>Index</h1>';
-// });
+app.use(bodyParser())
 
+app.use(controller())
 
-router.get('/', async (ctx, next) => {
-    ctx.response.body = `<h1>Index</h1>
-        <form action="/signin" method="post">
-            <p>Name: <input name="name" value="koa"></p>
-            <p>Password: <input name="password" type="password"></p>
-            <p><input type="submit" value="Submit"></p>
-        </form>`;
-});
-
-router.post('/signin', async (ctx, next) => {
-    var
-        name = ctx.request.body.name || '',
-        password = ctx.request.body.password || '';
-    console.log(`signin with name: ${name}, password: ${password}`);
-    if (name === 'koa' && password === '12345') {
-        ctx.response.body = `<h1>Welcome, ${name}!</h1>`;
-    } else {
-        ctx.response.body = `<h1>Login failed!</h1>
-        <p><a href="/">Try again</a></p>`;
-    }
-});
-
-app.use(bodyParser());
-// add router middleware:
-app.use(router.routes());
-
-app.listen(3002);
-console.log('app started at port 3002...');
+app.listen(3000)
+console.log('app started at port 3000\n')
