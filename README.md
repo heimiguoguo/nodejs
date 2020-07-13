@@ -6,15 +6,15 @@
   + nodemon --inspect app 80启动项目
 
   + F12打开浏览器Inspector，可以看到
-  ![Browser Inspector](./dist/inspector.png)
+  ![Browser Inspector](./static/images/inspector.png)
 
   + Click Node icon，会打开一个新的Window
-  ![Node Inspector](./dist/node_inspector_connection.png)
+  ![Node Inspector](./static/images/node_inspector_connection.png)
 
   + 看看项目地址在不在列表里边，如果不在，click 'Add connection'
 
   + Click 'Sources' Tab，添加一个断点，刷新浏览器，断点成功命中
-  ![Node Inspector Sources](./dist/node_inspector_sources.png)
+  ![Node Inspector Sources](./static/images/node_inspector_sources.png)
 
 * Node项目打包？可以用webpack打包吗？
   + 如何支持import

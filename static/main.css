@@ -1,0 +1,48 @@
+.user-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.login-container,
+.register-container {
+    background-image: url("/static/images/icon.jpg");
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.container .row .col-4 {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 5px;
+}
+
+.navbar{
+    background-color: rgb(121, 82, 179);
+}
+
+.tabs{
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.tab{
+    justify-content: flex-start;
+    width: 150px;
+    text-align: center;
+}
+
+.tab.active{
+    border-bottom: 2px solid orange;
+}
+
+.card{
+    margin-bottom: 10px;
+}
